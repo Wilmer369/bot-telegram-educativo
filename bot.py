@@ -218,7 +218,7 @@ def main() -> None:
         logger.error("❌ TOKEN no encontrado. Configura la variable de entorno TOKEN")
         return
     
-    application = Application.builder().token(TOKEN).build()
+    application = Application.builder().token(TOKEN).read_timeout(30).write_timeout(30).build()
 
     # Registrar comandos
     application.add_handler(CommandHandler("start", start))
@@ -237,4 +237,5 @@ def main() -> None:
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__":
+
     main()
